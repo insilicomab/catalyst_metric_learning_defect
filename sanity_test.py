@@ -35,8 +35,10 @@ def main(cfg: DictConfig):
         num_classes=cfg.num_classes,
     )
 
-    # optimizer
+    # loss function & optimizer & scheduler
     optimizer = get_optimizer(config=cfg, net=model)
+    scheduler=get_scheduler(config=cfg, optimizer=optimizer)
+    loss_fn = get_loss_fn(config=cfg)
 
     # runner
     runner = CustomRunner()
@@ -44,9 +46,9 @@ def main(cfg: DictConfig):
     # train
     runner.train(
         model=model,
-        criterion=get_loss_fn(config=cfg),
+        criterion=loss_fn,
         optimizer=optimizer,
-        scheduler=get_scheduler(config=cfg, optimizer=optimizer),
+        scheduler=scheduler,
         loaders=loaders,
         seed=cfg.seed,
         num_epochs=cfg.runner.num_epochs,
