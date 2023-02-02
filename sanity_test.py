@@ -36,9 +36,9 @@ def main(cfg: DictConfig):
     )
 
     # loss function & optimizer & scheduler
-    optimizer = get_optimizer(config=cfg, net=model)
-    scheduler=get_scheduler(config=cfg, optimizer=optimizer)
     loss_fn = get_loss_fn(config=cfg)
+    optimizer = get_optimizer(config=cfg, net=model)
+    scheduler = get_scheduler(config=cfg, optimizer=optimizer)
 
     # runner
     runner = CustomRunner()
