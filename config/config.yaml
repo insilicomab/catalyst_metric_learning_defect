@@ -11,11 +11,21 @@ hydra:
   sweep:
     dir: .
     subdir: .
+
+## WanDB Settings ##
+wandb:
+    project: catalyst-metric-learning-defective
+    run_name: ""
+    tags: [baseline]
+    notes: ""
+    config_name: config.yaml
+    data_dir: ${img_dir}
+    model_name: ${encoder.model_name}
+    layer_name: ${layer.name}
   
 ## User Settings ##
 img_dir: input/train_data
 train_df_dir: input/train.csv
-save_model_dir: '/content/drive/MyDrive/Colab Notebooks/substrate/model/'
 num_classes: 2
 embedding_size: 512
 image_size: 224
