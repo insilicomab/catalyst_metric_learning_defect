@@ -3,7 +3,8 @@ The inference results are saved to a csv file.
 Usage:
     Inference with model on wandb:
         python inference.py \
-        --model_name {model name storaged in wandb} \
+        --timm_name {model name in timm} \
+        --layer_name {layer name in catalyst}
         --wandb_run_path {wandb_run_path} \
         --image_size {image size default: 224}
         --embedding_size {embedder output size default: 512} \
@@ -14,13 +15,11 @@ import argparse
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
-import pytorch_metric_learning
-from pytorch_metric_learning.utils.inference import InferenceModel
 import wandb
 
 from src.dataset import ImageDataset, TestTransforms
 from src.model import EncoderWithHead
-from src.inference import predict_fn
+from src.inference import predict_fn, InferenceModel
 
 
 def main(args):
